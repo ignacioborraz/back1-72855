@@ -100,6 +100,7 @@ const arrayPersonajes = [
   spiderman,
   blackwidow,
 ];
+console.log("--- LOG CON FOR ---");
 for (let i = 0; i <= arrayPersonajes.length - 1; i++) {
   //desde el elemento 0
   //hasta el ultimo elemento de un array
@@ -108,9 +109,17 @@ for (let i = 0; i <= arrayPersonajes.length - 1; i++) {
   const templ = generarTemplate(arrayPersonajes[i]);
   console.log(templ);
 }
-for (let personaje of arrayPersonajes) {
-  //por cada elemento (personaje) de un array (arrayPersonaje)
-  //ejecuto todo lo que está dentro de este scope (llaves)
-  const templateGenerado = generarTemplate(personaje);
-  console.log(templateGenerado);
+function generarTodosLosTemplates(arrayPersonaje) {
+  for (let personaje of arrayPersonaje) {
+    //por cada elemento (personaje) de un array (arrayPersonaje)
+    //ejecuto todo lo que está dentro de este scope (llaves)
+    const templateGenerado = generarTemplate(personaje);
+    console.log(templateGenerado);
+  }
 }
+console.log("--- LOG CON FUNCION ---");
+generarTodosLosTemplates(arrayPersonajes);
+console.log("--- LOG CON SPIDERMAN ---");
+generarTodosLosTemplates([spiderman, spiderman, spiderman])
+console.log("--- LOG CON BLACKWIDOW ---");
+generarTodosLosTemplates([blackwidow, blackwidow, blackwidow])
