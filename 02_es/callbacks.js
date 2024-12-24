@@ -1,7 +1,15 @@
-const sumar = (n1, n2) => console.log(n1 + n2);
-const restar = (n1, n2) => console.log(n1 - n2);
-const multiplicar = (n1, n2) => console.log(n1 * n2);
-const dividir = (n1, n2) => console.log(n1 / n2);
+const sumar = (n1, n2) => n1 + n2;
+const restar = (n1, n2) => n1 - n2;
+const multiplicar = (n1, n2) => n1 * n2;
+const dividir = (n1, n2) => {
+  return new Promise((cbExito, cbError) => {
+    if (n2 === 0) {
+      cbError("No se puede dividir por cero");
+    } else {
+      cbExito(n1 / n2);
+    }
+  });
+};
 //console.log(sumar(1, 10));
 //console.log(restar(1, 10));
 //console.log(multiplicar(5, 10));
@@ -38,14 +46,21 @@ const dividirConCbs = (n1, n2, cbExito, cbError) => {
 //dividirConCbs(10, 0, dividir, console.log);
 //dividirConCbs(10, 2, dividir, console.log);
 
-const calcularLuegoConCbs = (n1, n2, operar, cbExito) => {
-  setTimeout(() => {
-    operar(n1, n2, cbExito, console.log);
+const calcularLuegoConPromesa = (n1, n2, operar) => {
+  setTimeout(async () => {
+    try {
+      const resultado = await operar(n1, n2);
+      console.log(resultado);
+      //const resultado3 = resultado1 + resultado2
+      //resultado2.forEach(element => console.log(element));
+    } catch (error) {
+      console.log(error);
+    }
   }, 2000);
 };
 
-calcularLuegoConCbs(10, 0, dividirConCbs, dividir);
-calcularLuegoConCbs(10, 2, dividirConCbs, dividir);
-calcularLuegoConCbs(10, 5, sumar);
-calcularLuegoConCbs(10, 5, restar);
-calcularLuegoConCbs(10, 5, multiplicar);
+calcularLuegoConPromesa(10, 2, sumar);
+calcularLuegoConPromesa(10, 2, restar);
+calcularLuegoConPromesa(10, 2, multiplicar);
+calcularLuegoConPromesa(10, 2, dividir);
+calcularLuegoConPromesa(10, 0, dividir);
