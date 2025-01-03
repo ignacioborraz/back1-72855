@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "2fadb65afcec5cbdec271cc2",
+    "name": "Mr. Mike Strosin",
+    "email": "Zora22@gmail.com",
+    "age": 60,
+    "avatar": "https://avatars.githubusercontent.com/u/7875680",
+    "role": "guest"
+  },
+  {
+    "_id": "dca6b7c23ccbf358dea39cce",
+    "name": "Denise Torp",
+    "email": "Jerrell32@gmail.com",
+    "age": 68,
+    "avatar": "https://avatars.githubusercontent.com/u/79157397",
+    "role": "guest"
+  },
+  {
+    "_id": "aefad3ccf1cd1ff8ece02b3f",
+    "name": "Tabitha Marvin",
+    "email": "Dudley82@hotmail.com",
+    "age": 58,
+    "avatar": "https://avatars.githubusercontent.com/u/28150957",
+    "role": "guest"
+  },
+  {
+    "_id": "8dc7ef1fbb3fd8ae2b094e81",
+    "name": "Dr. Pat Wilderman",
+    "email": "Rosemary78@hotmail.com",
+    "age": 86,
+    "avatar": "https://avatars.githubusercontent.com/u/36589575",
+    "role": "admin"
+  },
+  {
+    "_id": "f52ddbebea7fc6fbc2f76acc",
+    "name": "lon",
+    "email": "lon63@coder.com.ar",
+    "password": "hola1234",
+    "age": 63,
+    "avatar": "https://avatars.githubusercontent.com/u/83216862",
+    "role": "guest"
+  },
+  {
+    "_id": "ada443d85252059f857baf31",
+    "name": "destiny",
+    "email": "destiny65@coder.com.ar",
+    "password": "hola1234",
+    "age": 65,
+    "avatar": "https://avatars.githubusercontent.com/u/48161459",
+    "role": "user"
+  }
+]
