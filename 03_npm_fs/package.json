@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "03_npm_fs",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -11,10 +11,7 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "devDependencies": {
-    "@faker-js/faker": "^9.3.0"
-  },
   "dependencies": {
-    "morgan": "^1.10.0"
+    "@faker-js/faker": "^9.3.0"
   }
 }
