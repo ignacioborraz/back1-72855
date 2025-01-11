@@ -1,4 +1,4 @@
-import { da, faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 import fs from "fs/promises";
 
 const path = "./src/data/fs/files/products.json";
@@ -102,6 +102,38 @@ class ProductsManager {
       const all = await this.readFile();
       const one = all.find((each) => each._id === id);
       return one;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async updateOne(id, newData) {
+    try {
+      const all = await this.readFile();
+      const index = all.findIndex((product) => product._id === id);
+      if (index === -1) {
+        const error = new Error(`Product with ID ${id} not found`);
+        error.statusCode = 404;
+        throw error;
+      }
+      all[index] = { ...all[index], ...newData };
+      await this.writeFile(all);
+      return all[index];
+    } catch (error) {
+      throw error;
+    }
+  }
+  async destroyOne(id) {
+    try {
+      const all = await this.readFile();
+      const index = all.findIndex((product) => product._id === id);
+      if (index === -1) {
+        const error = new Error(`Product with ID ${id} not found`);
+        error.statusCode = 404;
+        throw error;
+      }
+      const [removedProduct] = all.splice(index, 1);
+      await this.writeFile(all);
+      return removedProduct;
     } catch (error) {
       throw error;
     }
