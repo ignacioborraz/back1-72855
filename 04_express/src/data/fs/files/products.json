@@ -62,5 +62,29 @@
     "stock": 874,
     "photo": "https://loremflickr.com/1132/2124?lock=6845368567384608",
     "category": "accesorios"
+  },
+  {
+    "_id": "a0fa5c96dc1b1babafbd8a7f",
+    "title": "accesorio 1",
+    "stock": 100,
+    "price": 100,
+    "category": "accesorios",
+    "photo": "https://loremflickr.com/1132/2124?lock=6845368567384608"
+  },
+  {
+    "_id": "cb1d0fd2a8eabb5a8e0f60d8",
+    "title": "accesorio 2",
+    "stock": 200,
+    "price": 200,
+    "category": "accesorios",
+    "photo": "https://loremflickr.com/1132/2124?lock=6845368567384608"
+  },
+  {
+    "_id": "d0f1f8fc59d4c864ba21a2e7",
+    "title": "accesorio 3",
+    "stock": 300,
+    "price": 300,
+    "category": "accesorios",
+    "photo": "https://loremflickr.com/1132/2124?lock=6845368567384608"
   }
 ]

@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { da, faker } from "@faker-js/faker";
 import fs from "fs/promises";
 
 const path = "./src/data/fs/files/products.json";
@@ -32,7 +32,7 @@ class ProductsManager {
       throw error;
     }
   }
-  async create() {
+  async createMock() {
     try {
       const _id = faker.database.mongodbObjectId();
       const title = faker.commerce.productName();
@@ -52,6 +52,26 @@ class ProductsManager {
         stock,
         photo,
         category,
+      };
+      //una vez construido el producto
+      //se lee el archivo
+      const dataOfFile = await this.readFile();
+      //se pushea el nuevo producto
+      dataOfFile.push(newProduct);
+      //se sobre escribe el archivo con la nueva data
+      await this.writeFile(dataOfFile);
+      //retorno el nuevo producto al cliente
+      return newProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async create(data) {
+    try {
+      const _id = faker.database.mongodbObjectId();
+      const newProduct = {
+        _id,
+        ...data,
       };
       //una vez construido el producto
       //se lee el archivo

@@ -9,6 +9,7 @@ server.listen(port, ready);
 
 /* funcionalidades aplicadas al servidor */
 server.use(express.urlencoded({ extended: true }));
+server.use(express.json());
 
 /* router */
 const indexPoint = "/";
@@ -38,6 +39,14 @@ const readProducts = async (req, res) => {
   return res.status(404).json({ response: "Not found!" });
 };
 server.get("/api/products", readProducts);
+
+const createProduct = async (req, res) => {
+  console.log(req.body);
+  const data = req.body;
+  const one = await productsManager.create(data);
+  return res.status(201).json({ response: one });
+};
+server.post("/api/products", createProduct);
 
 /* server.get("/api/:name/:age", (req, res) => {
   //console.log(req.params);
