@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
   addProductToCart,
-  readProductsByUser,
+  readProductsFromUser,
   updateQuantity,
   removeProductFromCart,
 } from "../../controllers/carts.controller.js";
@@ -9,8 +9,8 @@ import {
 const cartsRouter = Router();
 
 cartsRouter.post("/", addProductToCart);
-cartsRouter.get("/users/:uid", readProductsByUser);
-cartsRouter.put("/:cid", updateQuantity);
-cartsRouter.delete("/:cid", removeProductFromCart);
+cartsRouter.get("/users/:user_id", readProductsFromUser);
+cartsRouter.put("/:cart_id", updateQuantity);
+cartsRouter.delete("/:cart_id", removeProductFromCart);
 
 export default cartsRouter;
