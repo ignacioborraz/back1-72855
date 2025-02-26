@@ -14,7 +14,7 @@ const schema = new Schema(
 schema.plugin(mongoosePaginate);
 
 schema.pre(/^find/, function () {
-  this.populate("user_id", "email avatar").populate("product_id", "title stock");
+  this.populate("user_id", "email avatar").populate("product_id", "title price stock");
 });
 
 const Cart = model(collection, schema);

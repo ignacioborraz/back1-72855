@@ -46,13 +46,13 @@ class CartsManager extends Manager {
       throw error;
     }
   };
-  totalToPay = async (uid) => {
+  totalToPay = async (user_id) => {
     try {
       /* cada paso de la secuencia es un objeto con los operadores correspondientes */
       const pipeline = [
         /* filtrar los carritos del usuario específico */
         /* mongo no detecta el id como un objectid, entonces necesito transformarlo */
-        { $match: { user_id: new Types.ObjectId(uid) } },
+        { $match: { user_id: new Types.ObjectId(user_id) } },
         /* unir los datos de la coleccion de productos */
         { $lookup: { from: "products", localField: "product_id", foreignField: "_id", as: "product" } },
         /* descomponer array "product" con los datos relacionados */
