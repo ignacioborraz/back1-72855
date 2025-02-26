@@ -1,18 +1,13 @@
 import { Router } from "express";
-import {
-  create,
-  read,
-  readById,
-  updateById,
-  destroyById,
-} from "../../controllers/products.controller.js";
+import { create, read, readById, updateById, destroyById, paginate } from "../../controllers/products.controller.js";
 
 const productsRouter = Router();
 
 productsRouter.post("/", create);
 productsRouter.get("/", read);
-productsRouter.get("/:pid", readById);
-productsRouter.put("/:pid", updateById);
-productsRouter.delete("/:pid", destroyById);
+productsRouter.get("/pages", paginate);
+productsRouter.get("/:product_id", readById);
+productsRouter.put("/:product_id", updateById);
+productsRouter.delete("/:product_id", destroyById);
 
 export default productsRouter;

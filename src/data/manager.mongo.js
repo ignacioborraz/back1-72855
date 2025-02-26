@@ -12,7 +12,7 @@ class Manager {
   };
   read = async (filter) => {
     try {
-      const all = await this.model.find(filter);
+      const all = await this.model.find(filter).lean();
       return all;
     } catch (error) {
       throw error;
@@ -20,7 +20,7 @@ class Manager {
   };
   readById = async (id) => {
     try {
-      const one = await this.model.findById(id);
+      const one = await this.model.findOne({ _id: id }).lean();
       return one;
     } catch (error) {
       throw error;
@@ -29,7 +29,7 @@ class Manager {
   updateById = async (id, data) => {
     try {
       const opts = { new: true };
-      const one = await this.model.findByIdAndUpdate(id, data, opts);
+      const one = await this.model.findOneAndUpdate({ _id: id }, data, opts);
       return one;
     } catch (error) {
       throw error;
@@ -37,8 +37,16 @@ class Manager {
   };
   destroyById = async (id) => {
     try {
-      const one = await this.model.findByIdAndDelete(id);
+      const one = await this.model.findOneAndDelete({ _id: id });
       return one;
+    } catch (error) {
+      throw error;
+    }
+  };
+  paginate = async (page, limit, filter) => {
+    try {
+      const all = await this.model.paginate(filter, { page, limit });
+      return all;
     } catch (error) {
       throw error;
     }

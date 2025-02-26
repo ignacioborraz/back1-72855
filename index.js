@@ -11,9 +11,9 @@ import pathHandler from "./src/middlewares/pathHandler.mid.js"
 /* server settings */
 const server = express();
 const port = process.env.PORT;
-const ready = () => {
+const ready = async () => {
   console.log("server ready on port " + port);
-  connectMongo(process.env.MONGO);
+  await connectMongo(process.env.MONGO);
 };
 server.listen(port, ready);
 
@@ -25,8 +25,8 @@ server.set("views", __dirname + "/src/views");
 /* middlewares settings */
 server.use(morgan("dev"));
 server.use(express.static("public"));
-server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
+server.use(express.json());
 
 /* routers settings */
 server.use("/", router);

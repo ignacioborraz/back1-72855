@@ -33,8 +33,8 @@ const read = async (req, res, next) => {
 };
 const readById = async (req, res, next) => {
   try {
-    const { uid } = req.params;
-    const one = await usersManager.readById(uid);
+    const { user_id } = req.params;
+    const one = await usersManager.readById(user_id);
     if (one) {
       return res.status(200).json({
         method: req.method,
@@ -51,9 +51,9 @@ const readById = async (req, res, next) => {
 };
 const updateById = async (req, res, next) => {
   try {
-    const { uid } = req.params;
+    const { user_id } = req.params;
     const data = req.body;
-    const one = await usersManager.updateById(uid, data);
+    const one = await usersManager.updateById(user_id, data);
     if (one) {
       return res.status(200).json({
         method: req.method,
@@ -70,8 +70,8 @@ const updateById = async (req, res, next) => {
 };
 const destroyById = async (req, res, next) => {
   try {
-    const { uid } = req.params;
-    const one = await usersManager.destroyById(uid);
+    const { user_id } = req.params;
+    const one = await usersManager.destroyById(user_id);
     if (one) {
       return res.status(200).json({
         method: req.method,
@@ -86,5 +86,23 @@ const destroyById = async (req, res, next) => {
     next(error);
   }
 };
+const login = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const one = await usersManager.login(email, password);
+    if (one) {
+      return res.status(200).json({
+        method: req.method,
+        url: req.url,
+        response: one._id,
+      });
+    }
+    const error = new Error("Invalid credentials");
+    error.statusCode = 401;
+    throw error;
+  } catch (error) {
+    next(error);
+  }
+};
 
-export { create, read, readById, updateById, destroyById };
+export { create, read, readById, updateById, destroyById, login };

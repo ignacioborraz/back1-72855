@@ -1,5 +1,19 @@
 import Manager from "./manager.mongo.js";
 import User from "./models/users.model.js";
 
-const usersManagers = new Manager(User);
+class UsersManager extends Manager {
+  constructor() {
+    super(User);
+  }
+  login = async (email, password) => {
+    try {
+      const one = await this.model.findOne({ email, password }).lean();
+      return one;
+    } catch (error) {
+      throw error;
+    }
+  };
+}
+
+const usersManagers = new UsersManager();
 export default usersManagers;

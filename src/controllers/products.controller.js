@@ -33,8 +33,8 @@ const read = async (req, res, next) => {
 };
 const readById = async (req, res, next) => {
   try {
-    const { pid } = req.params;
-    const one = await productsManager.readById(pid);
+    const { product_id } = req.params;
+    const one = await productsManager.readById(product_id);
     if (one) {
       return res.status(200).json({
         method: req.method,
@@ -51,9 +51,9 @@ const readById = async (req, res, next) => {
 };
 const updateById = async (req, res, next) => {
   try {
-    const { pid } = req.params;
+    const { product_id } = req.params;
     const data = req.body;
-    const one = await productsManager.updateById(pid, data);
+    const one = await productsManager.updateById(product_id, data);
     if (one) {
       return res.status(200).json({
         method: req.method,
@@ -70,8 +70,8 @@ const updateById = async (req, res, next) => {
 };
 const destroyById = async (req, res, next) => {
   try {
-    const { pid } = req.params;
-    const one = await productsManager.destroyById(pid);
+    const { product_id } = req.params;
+    const one = await productsManager.destroyById(product_id);
     if (one) {
       return res.status(200).json({
         method: req.method,
@@ -86,5 +86,18 @@ const destroyById = async (req, res, next) => {
     next(error);
   }
 };
+const paginate = async (req, res, next) => {
+  try {
+    const { page = 1, limit = 5, ...filter } = req.query;
+    const { docs, prevPage, nextPage } = await productsManager.paginate(page, limit, filter);
+    return res.status(200).json({
+      method: req.method,
+      url: req.url,
+      response: { docs, prevPage, nextPage },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
-export { create, read, readById, updateById, destroyById };
+export { create, read, readById, updateById, destroyById, paginate };
